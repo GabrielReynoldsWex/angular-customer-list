@@ -1,0 +1,26 @@
+<style>
+
+    table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+        padding: 10px;
+    }
+
+</style>
+
+<h1>Customer Details</h1>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Contact Number</td>
+    </tr>
+    <div *ngFor="let customer of CustomerList">
+        <tr>
+            <td>{{ customer[0] }}</td>
+            <td>{{ customer[1] }}</td>
+            <td>{{ customer[2] }}</td>
+        </tr>
+    </div>
+</table>
