@@ -1,13 +1,30 @@
 <style>
-
-    table, th, td {
+    table,
+    th,
+    td {
         border: 1px solid;
         border-collapse: collapse;
         padding: 10px;
     }
-
 </style>
 
 <h1>Customer Details</h1>
 
- 
+<div *ngIf="customerData.length !== 0, else elseBlock">
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Phone Number</td>
+        </tr>
+        <tr *ngFor="let customer of customerData">
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.phone}}</td>
+        </tr>
+    </table>
+</div>
+
+<ng-template #elseBlock>
+    <p>The Customer Database is currently empty.</p>
+</ng-template>

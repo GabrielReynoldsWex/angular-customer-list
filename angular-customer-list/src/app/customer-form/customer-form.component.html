@@ -1,5 +1,3 @@
-<p>customer-form works!</p>
-
 <form [formGroup]="formData" (ngSubmit)="onSubmit()">
     <label for="name">Name </label>
     <input id="name" type="text" formControlName="name">
@@ -7,5 +5,5 @@
     <label for="phone">Phone Number </label>
     <input id="phone" type="text" formControlName="phone">
     <br><br>
-    <button class="button" type="submit">Add Customer</button>
+    <button class="button" type="submit" [disabled]="!formData.valid">Add Customer</button>
 </form>

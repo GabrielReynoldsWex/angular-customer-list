@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-form',
@@ -11,8 +11,8 @@ import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 export class CustomerFormComponent {
 
   formData = this.formBuilder.group({
-    name: '',
-    phone: ''
+    name: ['', Validators.required],
+    phone: ['', [Validators.required, Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')]]
   })
  
   constructor (
@@ -28,20 +28,8 @@ export class CustomerFormComponent {
   addToStorage(customerDataString: string) {
     
     var customerData = JSON.parse(customerDataString);
-    var id;
-
-    // If dataset is already an array, then invoke the determine ID method
-    if (Array.isArray(customerData)) {
-       id = this.determineId(customerData)
-    }
-
-    // Else, since we know the ID can only possibly have a value of 1 (as there is only one dataset entry),
-    // convert dataset to array and set ID to 2
-    else {
-      customerData = Array.of(customerData);
-      id = 2;
-    }
-
+    var id = this.determineId(customerData)
+  
     // Create new JSON Object, push into array and save to localStorage.
     var newCustomer = {id: id, name: this.formData.value.name, phone: this.formData.value.phone};
     customerData.push(newCustomer);
@@ -49,8 +37,11 @@ export class CustomerFormComponent {
   }
 
   createStorage() {
-    var newCustomer = JSON.stringify({id: '1', name: this.formData.value.name, phone: this.formData.value.phone});
-    localStorage.setItem('customerData', newCustomer);
+
+    // Create JSON Array and push to localStorage.
+    var newCustomer = {id: 1, name: this.formData.value.name, phone: this.formData.value.phone};
+    var newCustomerArray = Array.of(newCustomer);
+    localStorage.setItem('customerData', JSON.stringify(newCustomerArray));
   }
   
   onSubmit() : void {

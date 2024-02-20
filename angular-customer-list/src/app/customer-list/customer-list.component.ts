@@ -1,23 +1,26 @@
 import { Component, Input } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 // Customer Data Interface
 
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [ NgFor ],
+  imports: [NgFor, NgIf],
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.css'
 })
 
 export class CustomerListComponent {
 
-  ngOnInit() : void {
+  // Not strongly typed but works well enough
+  customerData: any[] = [];
 
-    var customerString = localStorage.getItem('customerList');
-    console.log("testing: " + customerString );
+  ngOnInit(): void {
 
+    var dataString = localStorage.getItem('customerData');
+    if (dataString !== null) {
+      this.customerData = JSON.parse(dataString);
+    }
   }
-
 }
