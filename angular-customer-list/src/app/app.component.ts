@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
  
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, CustomerListComponent]
+    imports: [RouterOutlet, RouterLink, RouterLinkActive],
 })
 export class AppComponent {
   title = 'angular-customer-list';

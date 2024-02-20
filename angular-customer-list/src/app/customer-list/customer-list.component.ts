@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NgFor } from '@angular/common';
 
+// Customer Data Interface
+
 @Component({
   selector: 'app-customer-list',
   standalone: true,
@@ -11,10 +13,11 @@ import { NgFor } from '@angular/common';
 
 export class CustomerListComponent {
 
-  protected CustomerList: string[][] = [ 
-    ["1", "John Smith", "1111111111"],
-    ["2", "Greg Davies", "2222222222"],
-    ["3", "Alex Horne", "3333333333"],
-    ["3", "James Acaster", "4444444444"] 
-  ];
+  ngOnInit() : void {
+
+    var customerString = localStorage.getItem('customerList');
+    console.log("testing: " + customerString );
+
+  }
+
 }

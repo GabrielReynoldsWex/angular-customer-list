@@ -1,26 +1,13 @@
-<style>
+<h1>Customer Form App</h1>
+<nav>
+  <ul>
+    <li>
+      <a routerLink="/customer-form" routerLinkActive="active" ariaCurrentWhenActive="page">Add a Customer</a>
+    </li>
+    <li>
+      <a routerLink="/customer-list" routerLinkActive="active" ariaCurrentWhenActive="page">View Customers</a>
+    </li>
+  </ul>
+</nav>
 
-  #welcome {
-    text-align: center;
-    font-family: 'Roboto';
-
-   }
-
-   #options {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-   }
-
-</style>
-
-<div id="welcome">
-  <h1>Welcome</h1>
-  <div id="options">
-    <p>Add a Customer</p>
-    <p>View Customers</p>
-  </div>
-</div>
- 
-
-<router-outlet />
+<router-outlet></router-outlet>
