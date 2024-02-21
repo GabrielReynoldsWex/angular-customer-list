@@ -1,21 +1,48 @@
 <style>
-    table,
-    th,
-    td {
+
+    h2, p {
+        text-align: center;
+    }
+
+    h2 {
+        font-family: 'Roboto';
+        font-size: 15px;
+    }
+
+    p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table, th, td {
         border: 1px solid;
         border-collapse: collapse;
         padding: 10px;
+        font-size: 10px;
+        font-family: Arial, Helvetica, sans-serif;
     }
+
+    th {
+        background-color:silver;
+    }
+
 </style>
 
-<h1>Customer Details</h1>
+<NavBarComponent></NavBarComponent>
+
+<h2>Customer Details</h2>
 
 <div *ngIf="customerData.length !== 0, else elseBlock">
     <table>
         <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Phone Number</td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone Number</th>
         </tr>
         <tr *ngFor="let customer of customerData">
             <td>{{customer.id}}</td>

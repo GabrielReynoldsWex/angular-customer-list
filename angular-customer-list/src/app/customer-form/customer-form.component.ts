@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-customer-form',
   standalone: true,
-  imports: [ FormsModule, ReactiveFormsModule ],
+  imports: [ FormsModule, ReactiveFormsModule, NavBarComponent ],
   templateUrl: './customer-form.component.html',
   styleUrl: './customer-form.component.css'
 })
@@ -16,8 +19,12 @@ export class CustomerFormComponent {
   })
  
   constructor (
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private router : Router,
+    private titleService : Title
+  ) {
+    this.titleService.setTitle("Add Customer");
+  }
 
   determineId(customerData : any) {
     var currentId = customerData[customerData.length - 1].id;
@@ -55,5 +62,6 @@ export class CustomerFormComponent {
       this.createStorage();
 
     this.formData.reset();
+    this.router.navigate(['./customer-list']);
   }
 }
