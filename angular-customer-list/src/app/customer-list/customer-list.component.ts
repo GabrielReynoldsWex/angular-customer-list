@@ -1,20 +1,32 @@
-import { Component, Input } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { Component } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { Title } from '@angular/platform-browser';
+
+// Customer Data Interface
 
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [ NgFor ],
+  imports: [NgFor, NgIf, NavBarComponent],
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.css'
 })
 
 export class CustomerListComponent {
 
-  protected CustomerList: string[][] = [ 
-    ["1", "John Smith", "1111111111"],
-    ["2", "Greg Davies", "2222222222"],
-    ["3", "Alex Horne", "3333333333"],
-    ["3", "James Acaster", "4444444444"] 
-  ];
+  constructor(private titleService : Title) {
+    this.titleService.setTitle("Customer List");
+  }
+
+  // Not strongly typed but works well enough
+  customerData: any[] = [];
+
+  ngOnInit(): void {
+
+    var dataString = localStorage.getItem('customerData');
+    if (dataString !== null) {
+      this.customerData = JSON.parse(dataString);
+    }
+  }
 }
